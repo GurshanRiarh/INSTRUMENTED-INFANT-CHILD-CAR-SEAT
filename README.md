@@ -22,16 +22,17 @@ research prototypes, not certified medical or automotive devices.
 ## Repository map
 
 ```
+board-viewer.html            self-contained 3D + 2D board viewer
 hardware/
-  libraries/                 custom footprints + symbols used by the projects
+  libraries/                 footprints, symbols, and approximate STEP models
   psm-v1/                    thesis-baseline KiCad project (schematic + PCB)
     fab/                     Gerbers, drill, position file, PDF/SVG preview
   psm-v3/
-    tile/                    modular 4-sensor tile KiCad project (PCB)
-    hub/                     one-mux / four-port hub KiCad project (PCB)
+    tile/                    modular 4-sensor tile project (schematic + PCB)
+    hub/                     one-mux / four-port hub project (schematic + PCB)
 docs/                        architecture, design notes, validation, fabrication, tests
 mechanical/                  parametric silicone tile mold (OpenSCAD) + process notes
-scripts/                     reproducible generators and BOM/plot helpers
+scripts/                     board/3D/viewer generators, BOM and check helpers
 firmware/                    optional I²C bring-up script for a Raspberry Pi
 ```
 
@@ -53,7 +54,12 @@ Command-line checks:
 kicad-cli pcb drc --severity-all --output drc.rpt hardware/psm-v1/psm-v1.kicad_pcb
 kicad-cli sch erc --output erc.rpt hardware/psm-v1/psm-v1.kicad_sch
 kicad-cli pcb drc --severity-all --output drc.rpt hardware/psm-v3/tile/psm-v3-tile.kicad_pcb
+kicad-cli sch erc --output erc.rpt hardware/psm-v3/tile/psm-v3-tile.kicad_sch
 kicad-cli pcb drc --severity-all --output drc.rpt hardware/psm-v3/hub/psm-v3-hub.kicad_pcb
+kicad-cli sch erc --output erc.rpt hardware/psm-v3/hub/psm-v3-hub.kicad_sch
+
+# Regenerate the self-contained viewer from the current PCB/schematic files
+python3 scripts/build_board_viewer.py
 ```
 
 ## PSM V1 — thesis baseline
@@ -223,7 +229,7 @@ Details and reproduction commands are in
 
 - Full V1 schematic and routed PCB.
 - Full V3 tile and hub schematics and routed PCBs.
-- Custom VCNL4020/VCNL4030X01 footprints and PSM symbol library.
+- Custom VCNL4020/VCNL4030X01 footprints, PSM symbol library, and approximate STEP models.
 - Fabrication outputs, BOMs, and validation reports.
 - Approximate STEP 3D models for the custom VCNL4020 and VCNL4030X01 packages, used for 3D renders in the board viewer.
 
