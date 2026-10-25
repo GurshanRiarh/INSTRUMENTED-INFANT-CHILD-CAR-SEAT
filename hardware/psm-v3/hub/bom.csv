@@ -1,0 +1,21 @@
+Quantity,References,Value,Footprint
+6,C1 C3 C4 C5 C6 C7,100n,C_0603_1608Metric
+2,R3 R4,10k,R_0603_1608Metric
+1,C2,10u,C_0805_2012Metric
+1,R5,1k,R_0603_1608Metric
+2,R1 R2,2.2k,R_0603_1608Metric
+1,TP1,3V3,TestPoint_Pad_D1.5mm
+1,TP2,GND,TestPoint_Pad_D1.5mm
+1,J1,HOST_IF,PinHeader_2x05_P2.54mm_Vertical
+1,TP5,INT_N,TestPoint_Pad_D1.5mm
+2,H1 H2,M3,MountingHole_3.2mm_M3
+1,TP6,MUX_RST,TestPoint_Pad_D1.5mm
+1,U1,PCA9548A,TSSOP-24_4.4x7.8mm_P0.65mm
+1,D1,POWER,LED_0603_1608Metric
+1,TP4,SCL,TestPoint_Pad_D1.5mm
+1,TP3,SDA,TestPoint_Pad_D1.5mm
+1,J2,TILE_0,PinHeader_1x06_P1.27mm_Vertical
+1,J3,TILE_1,PinHeader_1x06_P1.27mm_Vertical
+1,J4,TILE_2,PinHeader_1x06_P1.27mm_Vertical
+1,J5,TILE_3,PinHeader_1x06_P1.27mm_Vertical
+1,U2,USBLC6-2SC6,SOT-23-6

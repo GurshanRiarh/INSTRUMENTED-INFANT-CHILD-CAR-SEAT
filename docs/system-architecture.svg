@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="480" viewBox="0 0 920 480">
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+  </marker>
+  <style>
+    text { font-family: "DejaVu Sans", Arial, sans-serif; fill: #111; }
+    .box { fill: #f7f9fc; stroke: #2c3e50; stroke-width: 1.5; rx: 6; }
+    .box2 { fill: #eef6ee; stroke: #2e7d32; stroke-width: 1.5; rx: 6; }
+    .box3 { fill: #fff4e5; stroke: #b26a00; stroke-width: 1.5; rx: 6; }
+    .wire { stroke: #333; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+    .line { stroke: #333; stroke-width: 1.4; fill: none; }
+    .small { font-size: 12px; }
+    .tiny { font-size: 10.5px; fill: #444; }
+    .title { font-size: 20px; font-weight: bold; }
+    .h { font-size: 15px; font-weight: bold; }
+  </style>
+</defs>
+<text x="20" y="30" class="title">Instrumented Infant-Child Car Seat - Data Path</text>
+<text x="20" y="50" class="tiny">Research prototype. V1 is the thesis reproduction; V3 is the modular sensor upgrade.</text>
+<rect class="box" x="20" y="80" width="200" height="150"/>
+<text x="120.0" y="102" text-anchor="middle" font-size="15" font-weight="bold">Seat sensing</text>
+<text x="120.0" y="120" text-anchor="middle" font-size="12.5" font-weight="normal">PSM V1: 16x VCNL4020</text>
+<text x="120.0" y="135" text-anchor="middle" font-size="12.5" font-weight="normal">or PSM V3: 4 tiles / 16x VCNL4030X01</text>
+<text x="120.0" y="150" text-anchor="middle" font-size="12.5" font-weight="normal">OV5640 RGB camera</text>
+<text x="120.0" y="165" text-anchor="middle" font-size="12.5" font-weight="normal">AMG8833 8x8 thermal</text>
+<text x="120.0" y="180" text-anchor="middle" font-size="12.5" font-weight="normal">Orbbec Astra Pro RGB-D</text>
+<rect class="box2" x="270" y="80" width="190" height="120"/>
+<text x="365.0" y="102" text-anchor="middle" font-size="15" font-weight="bold">ESP32-S3 edge node</text>
+<text x="365.0" y="120" text-anchor="middle" font-size="12.5" font-weight="normal">OV5640 over DVP</text>
+<text x="365.0" y="135" text-anchor="middle" font-size="12.5" font-weight="normal">AMG8833 over I2C</text>
+<text x="365.0" y="150" text-anchor="middle" font-size="12.5" font-weight="normal">JPEG + timestamp</text>
+<text x="365.0" y="165" text-anchor="middle" font-size="12.5" font-weight="normal">Wi-Fi / MQTT publisher</text>
+<rect class="box2" x="270" y="250" width="190" height="110"/>
+<text x="365.0" y="272" text-anchor="middle" font-size="15" font-weight="bold">Raspberry Pi 4B hub</text>
+<text x="365.0" y="290" text-anchor="middle" font-size="12.5" font-weight="normal">PSM over I2C + mux</text>
+<text x="365.0" y="305" text-anchor="middle" font-size="12.5" font-weight="normal">Astra Pro over USB</text>
+<text x="365.0" y="320" text-anchor="middle" font-size="12.5" font-weight="normal">Timestamp sync + fusion</text>
+<text x="365.0" y="335" text-anchor="middle" font-size="12.5" font-weight="normal">BLE GATT server</text>
+<rect class="box3" x="510" y="80" width="200" height="115"/>
+<text x="610.0" y="102" text-anchor="middle" font-size="15" font-weight="bold">iPhone app</text>
+<text x="610.0" y="120" text-anchor="middle" font-size="12.5" font-weight="normal">BLE service layer</text>
+<text x="610.0" y="135" text-anchor="middle" font-size="12.5" font-weight="normal">Alert state machine</text>
+<text x="610.0" y="150" text-anchor="middle" font-size="12.5" font-weight="normal">Drive-safe UI</text>
+<text x="610.0" y="165" text-anchor="middle" font-size="12.5" font-weight="normal">Trip / alert history</text>
+<rect class="box3" x="510" y="245" width="200" height="95"/>
+<text x="610.0" y="267" text-anchor="middle" font-size="15" font-weight="bold">In-vehicle output</text>
+<text x="610.0" y="285" text-anchor="middle" font-size="12.5" font-weight="normal">CarPlay (target)</text>
+<text x="610.0" y="300" text-anchor="middle" font-size="12.5" font-weight="normal">or mounted-phone drive-safe mode</text>
+<text x="610.0" y="315" text-anchor="middle" font-size="12.5" font-weight="normal">No live video while moving</text>
+<rect class="box" x="740" y="150" width="150" height="110"/>
+<text x="815.0" y="172" text-anchor="middle" font-size="15" font-weight="bold">Caregiver</text>
+<text x="815.0" y="190" text-anchor="middle" font-size="12.5" font-weight="normal">Vitals + status</text>
+<text x="815.0" y="205" text-anchor="middle" font-size="12.5" font-weight="normal">Escalating alerts</text>
+<text x="815.0" y="220" text-anchor="middle" font-size="12.5" font-weight="normal">Emergency contacts</text>
+<line class="wire" x1="220" y1="155" x2="270" y2="140"/>
+<text x="245.0" y="141.5" text-anchor="middle" font-size="11" fill="#444">DVP / I2C</text>
+<line class="wire" x1="365" y1="200" x2="365" y2="250"/>
+<text x="365.0" y="219.0" text-anchor="middle" font-size="11" fill="#444">Wi-Fi / MQTT</text>
+<line class="wire" x1="460" y1="305" x2="510" y2="305"/>
+<text x="485.0" y="299.0" text-anchor="middle" font-size="11" fill="#444">BLE</text>
+<line class="wire" x1="610" y1="195" x2="610" y2="245"/>
+<text x="610.0" y="214.0" text-anchor="middle" font-size="11" fill="#444">CarPlay / phone UI</text>
+<line class="wire" x1="710" y1="292" x2="740" y2="250"/>
+<text x="725.0" y="265.0" text-anchor="middle" font-size="11" fill="#444">notifications</text>
+<text x="20" y="420" class="h">Design note</text>
+<text x="20" y="440" class="small">The Pi owns acquisition and fusion. The phone owns the alert state machine and escalation. The PSM is not a certified medical device.</text>
+<text x="20" y="458" class="small">V1 uses two PCA9548A muxes (0x70/0x71) for 16 VCNL4020 sensors. V3 uses one PCA9548A (0x70) for up to 8 tiles.</text>
+
+</svg>

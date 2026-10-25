@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470">
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+  </marker>
+  <style>
+    text { font-family: "DejaVu Sans", Arial, sans-serif; fill: #111; }
+    .box { fill: #f7f9fc; stroke: #2c3e50; stroke-width: 1.5; rx: 6; }
+    .box2 { fill: #eef6ee; stroke: #2e7d32; stroke-width: 1.5; rx: 6; }
+    .box3 { fill: #fff4e5; stroke: #b26a00; stroke-width: 1.5; rx: 6; }
+    .wire { stroke: #333; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+    .line { stroke: #333; stroke-width: 1.4; fill: none; }
+    .small { font-size: 12px; }
+    .tiny { font-size: 10.5px; fill: #444; }
+    .title { font-size: 20px; font-weight: bold; }
+    .h { font-size: 15px; font-weight: bold; }
+  </style>
+</defs>
+<text x="20" y="30" class="title">PSM V3 - Modular Tile Topology (Prannav improvements)</text>
+<text x="20" y="50" class="tiny">One mux, four 2x2 tiles, four factory I2C addresses per tile. Expandable to 8 tiles / 32 sensors.</text>
+<rect class="box3" x="20" y="85" width="180" height="100"/>
+<text x="110.0" y="107" text-anchor="middle" font-size="15" font-weight="bold">Host header J1</text>
+<text x="110.0" y="125" text-anchor="middle" font-size="12.5" font-weight="normal">2x5, 2.54 mm</text>
+<text x="110.0" y="140" text-anchor="middle" font-size="12.5" font-weight="normal">3V3, GND, SDA, SCL</text>
+<text x="110.0" y="155" text-anchor="middle" font-size="12.5" font-weight="normal">INT_N, MUX_RST, 5V</text>
+<rect class="box2" x="250" y="85" width="190" height="100"/>
+<text x="345.0" y="107" text-anchor="middle" font-size="15" font-weight="bold">U1 PCA9548A</text>
+<text x="345.0" y="125" text-anchor="middle" font-size="12.5" font-weight="normal">address 0x70</text>
+<text x="345.0" y="140" text-anchor="middle" font-size="12.5" font-weight="normal">A0/A1/A2 = 0</text>
+<text x="345.0" y="155" text-anchor="middle" font-size="12.5" font-weight="normal">channels 0-7 (0-3 used)</text>
+<rect class="box2" x="490" y="75" width="390" height="120"/>
+<text x="685.0" y="97" text-anchor="middle" font-size="15" font-weight="bold">Tile port J2..J5 (one per tile)</text>
+<text x="685.0" y="115" text-anchor="middle" font-size="12.5" font-weight="normal">6-pin, 1.27 mm: 3V3 / GND / SDA / SCL / INT_N / NC</text>
+<text x="685.0" y="130" text-anchor="middle" font-size="12.5" font-weight="normal">Each tile bus is one mux channel</text>
+<text x="685.0" y="145" text-anchor="middle" font-size="12.5" font-weight="normal">Tile cable length kept short; upstream 2.2k pull-ups</text>
+<rect class="box" x="250" y="245" width="630" height="115"/>
+<text x="565.0" y="267" text-anchor="middle" font-size="15" font-weight="bold">Tile (x4): 4x VCNL4030X01</text>
+<text x="565.0" y="285" text-anchor="middle" font-size="12.5" font-weight="normal">U1 0x60  |  U2 0x51  |  U3 0x40  |  U4 0x41</text>
+<text x="565.0" y="300" text-anchor="middle" font-size="12.5" font-weight="normal">All share SDA/SCL/INT_N on the tile; IR cathode + LDR tied per sensor</text>
+<text x="565.0" y="315" text-anchor="middle" font-size="12.5" font-weight="normal">22uF + 100nF per tile; 100nF per sensor VDD and IR anode</text>
+<line class="wire" x1="200" y1="135" x2="250" y2="135"/>
+<text x="225.0" y="129.0" text-anchor="middle" font-size="11" fill="#444">I2C</text>
+<line class="wire" x1="440" y1="135" x2="490" y2="135"/>
+<text x="465.0" y="129.0" text-anchor="middle" font-size="11" fill="#444">ch 0-3</text>
+<line class="wire" x1="685" y1="195" x2="685" y2="245"/>
+<text x="685.0" y="214.0" text-anchor="middle" font-size="11" fill="#444">4 sensors / tile</text>
+<text x="20" y="390" class="h">Why this is an improvement</text>
+<text x="20" y="410" class="small">V1: 2 muxes, 16 channels, fixed 0x13 sensors. V3: 1 mux, 4 channels, four addresses per tile.</text>
+<text x="20" y="428" class="small">Tiles can be placed on the car-seat contour and replaced individually; the hub supports up to 8 tiles.</text>
+<text x="20" y="446" class="small">Tile: 30 x 30 mm, 0.2 mm flex, sealing ring + conformal coat. Hub: 60 x 40 mm, 1.6 mm FR4.</text>
+
+</svg>
