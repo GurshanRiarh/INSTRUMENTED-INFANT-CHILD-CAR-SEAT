@@ -15,6 +15,8 @@ Both PCB revisions pass KiCad DRC with **0 violations and 0 unconnected
 items**. All three schematics pass ERC with **0 violations**. The boards are
 research prototypes, not certified medical or automotive devices.
 
+**Interactive board viewer:** open [board-viewer.html](board-viewer.html) in a browser for top/bottom/copper/silkscreen views, full schematics, and a lightbox.
+
 ![System architecture](docs/system-architecture.png)
 
 ## Repository map

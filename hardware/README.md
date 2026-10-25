@@ -6,6 +6,8 @@
 | PSM V3 sensor tile | `psm-v3/tile/psm-v3-tile.kicad_pro`, `.kicad_sch`, `.kicad_pcb` | `psm-v3/tile/fab/` |
 | PSM V3 hub | `psm-v3/hub/psm-v3-hub.kicad_pro`, `.kicad_sch`, `.kicad_pcb` | `psm-v3/hub/fab/` |
 
+For a browser overview of all three boards, open `../board-viewer.html`.
+
 The shared libraries are in `libraries/`:
 
 - `libraries/psm.pretty/` — custom footprints (`VCNL4020`, `VCNL4030X01`) plus
