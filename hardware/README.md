@@ -15,6 +15,10 @@ The shared libraries are in `libraries/`:
   self-contained.
 - `libraries/psm-symbols.kicad_sym` — project symbols used by all three
   schematics.
+- `libraries/psm.3dshapes/` — approximate STEP models for the custom
+  VCNL4020 and VCNL4030X01 packages. A copy also lives in
+  `psm-v3/libraries/psm.3dshapes/` so the `${KIPRJMOD}` path resolves from the
+  V3 projects.
 
 Each project has its own `fp-lib-table` and `sym-lib-table` with relative
 paths, so opening the `.kicad_pro` file is enough.

@@ -81,6 +81,9 @@ def vcnl4030():
     rect(fp, -2.25, -1.45, 2.25, 1.45, layer=pcbnew.F_Fab)
     line(fp, -2.50, -1.70, -1.95, -1.15)
     text(fp, "VCNL4030X01", 0, 1.75, layer=pcbnew.F_Fab, size=0.75, thick=0.12)
+    m = pcbnew.FP_3DMODEL()
+    m.m_Filename = "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4030X01.step"
+    fp.Add3DModel(m)
     return fp
 
 for fn, obj in [("VCNL4020", vcnl4020()), ("VCNL4030X01", vcnl4030())]:

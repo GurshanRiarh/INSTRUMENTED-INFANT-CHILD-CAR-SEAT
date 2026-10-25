@@ -1104,6 +1104,17 @@
 			(uuid "85f7802a-1d7c-4234-aac9-e1dfef3d1191")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "TestPoint_Pad_D1.5mm"
 		(layer "F.Cu")
@@ -2082,6 +2093,17 @@
 			(uuid "c5aa2f7a-5677-4b26-aca4-b5f6a9ec2156")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "C_0603_1608Metric"
 		(layer "F.Cu")
@@ -3756,6 +3778,17 @@
 			(uuid "fe639109-6061-4785-9f44-e37b1ec7db16")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "C_0603_1608Metric"
 		(layer "F.Cu")
@@ -4682,6 +4715,17 @@
 			(uuid "638dd9a4-0c5e-484f-adc3-08e8407ed85f")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "VCNL4020"
 		(layer "F.Cu")
@@ -4872,6 +4916,17 @@
 			(uuid "b1ce684b-0839-469f-b45e-b9c06b7ae939")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "TestPoint_Pad_D1.5mm"
 		(layer "F.Cu")
@@ -5306,6 +5361,17 @@
 			(uuid "136eee50-437c-4e08-9ccb-375279b085d2")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "VCNL4020"
 		(layer "F.Cu")
@@ -5496,6 +5562,17 @@
 			(uuid "0ce66077-9960-4049-997c-876d8ac840a8")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "VCNL4020"
 		(layer "F.Cu")
@@ -5686,6 +5763,17 @@
 			(uuid "9342299f-0a2f-4322-abee-e3acfe2b32e3")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "C_0603_1608Metric"
 		(layer "F.Cu")
@@ -6710,6 +6798,17 @@
 			(uuid "f87cf194-c437-4d97-a0eb-017f220d8d66")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "MountingHole_3.2mm_M3"
 		(layer "F.Cu")
@@ -7006,6 +7105,17 @@
 			(uuid "0b14251d-8983-451d-9eda-5042d8f470ac")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "VCNL4020"
 		(layer "F.Cu")
@@ -7196,6 +7306,17 @@
 			(uuid "041feafb-0e06-429d-9938-5339df95fd80")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "MountingHole_3.2mm_M3"
 		(layer "F.Cu")
@@ -8076,6 +8197,17 @@
 			(uuid "0fe8a27d-0ccf-4547-990f-afd900853778")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "R_0603_1608Metric"
 		(layer "F.Cu")
@@ -9346,6 +9478,17 @@
 			(uuid "8fa891fe-3238-4a1a-8e52-e38866a1d3cb")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "R_0603_1608Metric"
 		(layer "F.Cu")
@@ -9828,6 +9971,17 @@
 			(uuid "2387936f-757c-4d77-a3b3-c1013fcc1757")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "R_0603_1608Metric"
 		(layer "F.Cu")
@@ -10602,6 +10756,17 @@
 			(uuid "baa8b98d-da45-466c-8c1c-a0e9946dec12")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "VCNL4020"
 		(layer "F.Cu")
@@ -10792,6 +10957,17 @@
 			(uuid "d69e863e-0151-456d-815f-76b5370b6c9b")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4020.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "R_0603_1608Metric"
 		(layer "F.Cu")

@@ -808,6 +808,17 @@
 			(uuid "7951ebc1-77e6-406a-a78c-a324f0c9fe4d")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4030X01.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "MountingHole_2.2mm_M2"
 		(layer "F.Cu")
@@ -1520,6 +1531,17 @@
 			(uuid "72e8f77b-d6a0-49f6-9bdc-65cba9e29294")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4030X01.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "C_0603_1608Metric"
 		(layer "F.Cu")
@@ -2096,6 +2118,17 @@
 			(uuid "df70e13c-234a-402b-b07e-3a0889dd7146")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4030X01.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "C_0603_1608Metric"
 		(layer "F.Cu")
@@ -3256,6 +3289,17 @@
 			(uuid "de253fa2-1ce1-4918-87c7-b5cfcdaa05f6")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/../libraries/psm.3dshapes/VCNL4030X01.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(gr_line
 		(start 1.5 1.5)

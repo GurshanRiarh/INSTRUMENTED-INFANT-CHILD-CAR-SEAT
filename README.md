@@ -15,7 +15,7 @@ Both PCB revisions pass KiCad DRC with **0 violations and 0 unconnected
 items**. All three schematics pass ERC with **0 violations**. The boards are
 research prototypes, not certified medical or automotive devices.
 
-**Interactive board viewer:** open [board-viewer.html](board-viewer.html) in a browser for top/bottom/copper/silkscreen views, full schematics, and a lightbox.
+**Interactive board viewer:** open [board-viewer.html](board-viewer.html) in a browser for 3D angled/top/bottom views, 2D copper/silkscreen views, full schematics, and a lightbox.
 
 ![System architecture](docs/system-architecture.png)
 
@@ -225,6 +225,7 @@ Details and reproduction commands are in
 - Full V3 tile and hub schematics and routed PCBs.
 - Custom VCNL4020/VCNL4030X01 footprints and PSM symbol library.
 - Fabrication outputs, BOMs, and validation reports.
+- Approximate STEP 3D models for the custom VCNL4020 and VCNL4030X01 packages, used for 3D renders in the board viewer.
 
 **Not implemented / not validated**
 

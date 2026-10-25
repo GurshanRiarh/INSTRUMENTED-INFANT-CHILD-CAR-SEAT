@@ -25,6 +25,9 @@ BOARDS = {
             'bcu': ('Bottom copper', 'GND plane and crossovers. Minimum track 0.12 mm, clearance 0.15 mm.'),
             'silk': ('Front silkscreen', 'Board identity and array note. Reference designators live on the fab layer to keep the optical area clean.'),
             'outline': ('Board outline', '101.6 × 101.6 mm (4 in square) with 3.2 mm M3 mounting holes at the corners.'),
+            'iso': ('3D angled', 'Angled render of the V1 flex mat. The two PCA9548A muxes sit at the edges; the 2×5 host header is at the bottom. The silicone layer is not modeled.'),
+            'top3d': ('3D top', 'Top render: 16 approximate VCNL4020 packages, two muxes, the header, and the passive network. The flex is shown flat.'),
+            'bottom3d': ('3D bottom', 'Bottom render: no parts; through-hole header pins and vias are visible. The flex is shown flat.'),
         },
     },
     'tile': {
@@ -41,6 +44,9 @@ BOARDS = {
             'bcu': ('Bottom copper', 'GND plane and crossovers. The tile is 30 × 30 mm on 0.2 mm polyimide flex.'),
             'silk': ('Front silkscreen', 'Tile identity and the sealing/coating note.'),
             'outline': ('Board outline', '30 × 30 mm outline with four 2.2 mm M2 holes. Panelize with fiducials for assembly.'),
+            'iso': ('3D angled', 'Angled render of one 30 × 30 mm tile with four VCNL4030X01 sensors and the 1.27 mm tile connector.'),
+            'top3d': ('3D top', 'Top render: four sensor packages, decoupling, pull-ups, and the tile connector.'),
+            'bottom3d': ('3D bottom', 'Bottom render: the flex is shown flat; the sealing ring is a PCB guide, not a 3D part.'),
         },
     },
     'hub': {
@@ -57,6 +63,9 @@ BOARDS = {
             'bcu': ('Bottom copper', 'GND plane and crossovers. The hub is 60 × 40 mm on 1.6 mm FR4.'),
             'silk': ('Front silkscreen', 'Hub identity and the tile-port labels.'),
             'outline': ('Board outline', '60 × 40 mm outline with two M3 mounting holes. Add panel fiducials for factory assembly.'),
+            'iso': ('3D angled', 'Angled render of the hub: PCA9548A, ESD array, four tile ports, and the host header.'),
+            'top3d': ('3D top', 'Top render: the one-mux hub with four tile ports on channels 0–3.'),
+            'bottom3d': ('3D bottom', 'Bottom render: the gasket outline and mounting holes; the enclosure is not modeled.'),
         },
     },
 }
@@ -68,6 +77,12 @@ VIEWS = [
     ('bcu', 'Bottom copper', ['B.Cu', 'Edge.Cuts'], True, 1400),
     ('silk', 'Silkscreen', ['F.SilkS', 'Edge.Cuts'], False, 1400),
     ('outline', 'Outline', ['Edge.Cuts'], False, 1400),
+]
+
+VIEWS3D = [
+    ('iso', '3D angled', 'top', '-35,0,35', True, 1200, 1000),
+    ('top3d', '3D top', 'top', None, False, 1200, 1200),
+    ('bottom3d', '3D bottom', 'bottom', None, False, 1200, 1200),
 ]
 
 SCHEMS = {
@@ -100,6 +115,23 @@ def make_webp(board_key, view_key, layers, mirror, width):
     data = base64.b64encode(open(webp, 'rb').read()).decode('ascii')
     return {'src': 'data:image/webp;base64,' + data, 'w': int(w), 'h': int(h)}
 
+def make_3d(board_key, view_key, side, rotate, perspective, width, height):
+    board = BOARDS[board_key]
+    png = os.path.join(TMP, f'{board_key}-{view_key}.png')
+    webp = os.path.join(TMP, f'{board_key}-{view_key}.webp')
+    cmd = ['flatpak', 'run', '--command=kicad-cli', 'org.kicad.KiCad', 'pcb', 'render',
+           '--output', png, '--side', side, '--width', str(width), '--height', str(height),
+           '--quality', 'high', '--background', 'transparent']
+    if rotate:
+        cmd += ['--rotate', rotate]
+    if perspective:
+        cmd += ['--perspective']
+    cmd.append(os.path.join(BASE, board['pcb']))
+    run(cmd)
+    run(['magick', png, '-quality', '82', webp])
+    data = base64.b64encode(open(webp, 'rb').read()).decode('ascii')
+    return {'src': 'data:image/webp;base64,' + data, 'w': width, 'h': height}
+
 def image_data_uri(path):
     return 'data:image/png;base64,' + base64.b64encode(open(path, 'rb').read()).decode('ascii')
 
@@ -107,6 +139,10 @@ def build_data():
     data = {}
     for key, board in BOARDS.items():
         views = {}
+        for vk, label, side, rotate, perspective, width, height in VIEWS3D:
+            print('render 3d', key, vk)
+            views[vk] = make_3d(key, vk, side, rotate, perspective, width, height)
+            views[vk]['t'], views[vk]['c'] = board['captions'][vk]
         for vk, label, layers, mirror, width in VIEWS:
             print('render', key, vk)
             views[vk] = make_webp(key, vk, layers, mirror, width)
@@ -257,7 +293,7 @@ footer { font-size: .85rem; color: var(--muted); border-top: 1px solid var(--lin
     <div class="sec-head">
       <span class="eyebrow">Layout</span>
       <h2 id="h-boards">The boards</h2>
-      <p>Pick a board, then a view. Top and bottom are composite views; the copper and outline views isolate one layer at a time.</p>
+      <p>Pick a board, then a view. The 3D renders use approximate sensor models; the 2D top/bottom views are composite plots, and the copper/outline views isolate one layer at a time.</p>
     </div>
     <div class="tabs board-tabs" role="tablist" aria-label="Board">
       <button class="tab" role="tab" data-board="v1" aria-selected="true">PSM V1 · thesis baseline</button>
@@ -265,7 +301,10 @@ footer { font-size: .85rem; color: var(--muted); border-top: 1px solid var(--lin
       <button class="tab" role="tab" data-board="hub" aria-selected="false">PSM V3 · hub</button>
     </div>
     <div class="tabs" role="tablist" aria-label="Board view">
-      <button class="tab" role="tab" data-view="top" aria-selected="true">Top</button>
+      <button class="tab" role="tab" data-view="iso" aria-selected="true">3D angled</button>
+      <button class="tab" role="tab" data-view="top3d" aria-selected="false">3D top</button>
+      <button class="tab" role="tab" data-view="bottom3d" aria-selected="false">3D bottom</button>
+      <button class="tab" role="tab" data-view="top" aria-selected="false">Top</button>
       <button class="tab" role="tab" data-view="bottom" aria-selected="false">Bottom</button>
       <button class="tab" role="tab" data-view="fcu" aria-selected="false">Top copper</button>
       <button class="tab" role="tab" data-view="bcu" aria-selected="false">Bottom copper</button>
@@ -286,6 +325,7 @@ footer { font-size: .85rem; color: var(--muted); border-top: 1px solid var(--lin
         <h3 id="board-title"></h3>
         <p id="board-cap"></p>
         <p class="note" id="board-note"></p>
+        <p class="note">3D sensor models are approximate. Silicone domes, cables, and the car seat are not modeled.</p>
       </div>
     </div>
   </section>
@@ -426,7 +466,7 @@ footer { font-size: .85rem; color: var(--muted); border-top: 1px solid var(--lin
 <script>
 const BOARDS = __BOARDS__;
 const SCHEMS = __SCHEMS__;
-let state = { board: 'v1', view: 'top', sheet: 'v1' };
+let state = { board: 'v1', view: 'iso', sheet: 'v1' };
 const $ = id => document.getElementById(id);
 function setTabs(attr, value) {
   document.querySelectorAll('[data-' + attr + ']').forEach(b => b.setAttribute('aria-selected', b.dataset[attr] === value ? 'true' : 'false'));
