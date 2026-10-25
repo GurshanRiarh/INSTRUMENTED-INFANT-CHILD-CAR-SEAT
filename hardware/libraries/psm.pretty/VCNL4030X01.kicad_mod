@@ -1,0 +1,170 @@
+(footprint "VCNL4030X01"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Vishay VCNL4030X01 IR proximity/ambient light sensor, 4.0x2.36x0.75 mm, 8-pad QFN + EP")
+	(tags "VCNL4030X01 proximity IR sensor")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "19905eaf-cfb5-4b1c-95ed-51016bee7d8d")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Value" "VCNL4030X01"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "f59fcc08-bc3f-4e58-beb1-cb7800ada512")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "20f60c6c-dbfb-4e52-9caf-08bc01b1a955")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "dcc403be-8159-4866-8dd7-a670732e7976")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -2.5 -1.7)
+		(end -1.95 -1.15)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "a6ccd4f2-9874-482c-b79c-36dfd54595cc")
+	)
+	(fp_line
+		(start -2.25 -1.45)
+		(end 2.25 -1.45)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "3f18b87e-ac3b-4659-b3e9-f2cac05f6f9a")
+	)
+	(fp_line
+		(start -2.25 1.45)
+		(end -2.25 -1.45)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "c4fd542c-63da-4b84-bf57-d4aafd3006ce")
+	)
+	(fp_line
+		(start 2.25 -1.45)
+		(end 2.25 1.45)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "8e62698d-9944-432b-bf5c-f7604ba16977")
+	)
+	(fp_line
+		(start 2.25 1.45)
+		(end -2.25 1.45)
+		(stroke
+			(width 0.12)
+			(type default)
+		)
+		(layer "F.Fab")
+		(uuid "0ffd1503-7a6f-4ae5-916c-3d3bd283fe35")
+	)
+	(fp_text user "VCNL4030X01"
+		(at 0 1.75 0)
+		(layer "F.Fab")
+		(uuid "088e6d85-82e0-4085-9dd3-02ee67dcfaaa")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.12)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -0.975 -0.9)
+		(size 0.4 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "9a52bc1d-a46e-455a-8e55-4ea2e3424e7f")
+	)
+	(pad "2" smd rect
+		(at -0.324999 -0.9)
+		(size 0.4 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "42f89574-d2a8-48cd-ad4a-fff1ff5217d0")
+	)
+	(pad "3" smd rect
+		(at 0.325 -0.9)
+		(size 0.4 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "c0d9be2a-5494-49c7-92e1-2db1c4730cd1")
+	)
+	(pad "4" smd rect
+		(at 0.975 -0.9)
+		(size 0.4 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "d6ed71ee-7fdd-4492-b445-9deaa13e5903")
+	)
+	(pad "5" smd rect
+		(at 0.975 0.9)
+		(size 0.4 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "9096e5a2-3be8-46b5-a877-aca984cd80ef")
+	)
+	(pad "6" smd rect
+		(at 0.325 0.9)
+		(size 0.4 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "0feb5b68-22ef-4c48-84f5-43fc1fabe129")
+	)
+	(pad "7" smd rect
+		(at -0.324999 0.9)
+		(size 0.4 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "62f222e0-14c4-46b3-9bd8-601822085f82")
+	)
+	(pad "8" smd rect
+		(at -0.975 0.9)
+		(size 0.4 0.7)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "73e2a6f2-ca63-48cd-8036-e9449a42d108")
+	)
+	(embedded_fonts no)
+)

@@ -1,0 +1,20 @@
+# Source reference PDFs (not part of the hardware design)
+/Proposal Draft Version 2.docx.pdf
+/selzler-developmentofanovelpressuresensitivematusing.pdf
+
+# KiCad local/user files
+*.kicad_prl
+*.kicad_pro.lock
+*.lck
+*-backups/
+fp-info-cache
+
+# Freerouting / DRC intermediates
+*.dsn
+*.ses
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+.tmp-kitest/

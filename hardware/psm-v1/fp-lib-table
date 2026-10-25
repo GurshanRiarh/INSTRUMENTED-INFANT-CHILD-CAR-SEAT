@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "psm")(type "KiCad")(uri "${KIPRJMOD}/../libraries/psm.pretty")(options "")(descr "PSM project footprints"))
+)

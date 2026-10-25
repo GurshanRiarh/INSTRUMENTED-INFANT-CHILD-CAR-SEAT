@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440">
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+  </marker>
+  <style>
+    text { font-family: "DejaVu Sans", Arial, sans-serif; fill: #111; }
+    .box { fill: #f7f9fc; stroke: #2c3e50; stroke-width: 1.5; rx: 6; }
+    .box2 { fill: #eef6ee; stroke: #2e7d32; stroke-width: 1.5; rx: 6; }
+    .box3 { fill: #fff4e5; stroke: #b26a00; stroke-width: 1.5; rx: 6; }
+    .wire { stroke: #333; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+    .line { stroke: #333; stroke-width: 1.4; fill: none; }
+    .small { font-size: 12px; }
+    .tiny { font-size: 10.5px; fill: #444; }
+    .title { font-size: 20px; font-weight: bold; }
+    .h { font-size: 15px; font-weight: bold; }
+  </style>
+</defs>
+<text x="20" y="30" class="title">PSM V1 - Electrical Architecture (thesis baseline)</text>
+<text x="20" y="50" class="tiny">16x Vishay VCNL4020 (fixed 7-bit address 0x13), 2x PCA9548A 8-channel I2C switch, Tiva/LaunchPad header.</text>
+<rect class="box3" x="20" y="80" width="180" height="95"/>
+<text x="110.0" y="102" text-anchor="middle" font-size="15" font-weight="bold">Host header J1</text>
+<text x="110.0" y="120" text-anchor="middle" font-size="12.5" font-weight="normal">2x5, 2.54 mm</text>
+<text x="110.0" y="135" text-anchor="middle" font-size="12.5" font-weight="normal">3V3, GND, SDA, SCL</text>
+<text x="110.0" y="150" text-anchor="middle" font-size="12.5" font-weight="normal">INT_N, MUX_RST, 5V</text>
+<rect class="box2" x="240" y="82" width="180" height="90"/>
+<text x="330.0" y="104" text-anchor="middle" font-size="15" font-weight="bold">U17 PCA9548A</text>
+<text x="330.0" y="122" text-anchor="middle" font-size="12.5" font-weight="normal">7-bit address 0x70</text>
+<text x="330.0" y="137" text-anchor="middle" font-size="12.5" font-weight="normal">A0/A1/A2 = 0</text>
+<text x="330.0" y="152" text-anchor="middle" font-size="12.5" font-weight="normal">channels 0-7</text>
+<rect class="box2" x="240" y="200" width="180" height="90"/>
+<text x="330.0" y="222" text-anchor="middle" font-size="15" font-weight="bold">U18 PCA9548A</text>
+<text x="330.0" y="240" text-anchor="middle" font-size="12.5" font-weight="normal">7-bit address 0x71</text>
+<text x="330.0" y="255" text-anchor="middle" font-size="12.5" font-weight="normal">A0 = 1; A1/A2 = 0</text>
+<text x="330.0" y="270" text-anchor="middle" font-size="12.5" font-weight="normal">channels 0-7</text>
+<rect class="box" x="480" y="75" width="400" height="105"/>
+<text x="680.0" y="97" text-anchor="middle" font-size="15" font-weight="bold">Sensors U1-U8 (via U17)</text>
+<text x="680.0" y="115" text-anchor="middle" font-size="12.5" font-weight="normal">U1..U8 = VCNL4020 @ 0x13</text>
+<text x="680.0" y="130" text-anchor="middle" font-size="12.5" font-weight="normal">SCL/SDA per channel; INT_N shared</text>
+<text x="680.0" y="145" text-anchor="middle" font-size="12.5" font-weight="normal">IR anode: 3V3 through 10R; 100nF + 22uF</text>
+<rect class="box" x="480" y="195" width="400" height="105"/>
+<text x="680.0" y="217" text-anchor="middle" font-size="15" font-weight="bold">Sensors U9-U16 (via U18)</text>
+<text x="680.0" y="235" text-anchor="middle" font-size="12.5" font-weight="normal">U9..U16 = VCNL4020 @ 0x13</text>
+<text x="680.0" y="250" text-anchor="middle" font-size="12.5" font-weight="normal">SCL/SDA per channel; INT_N shared</text>
+<text x="680.0" y="265" text-anchor="middle" font-size="12.5" font-weight="normal">IR anode: 3V3 through 10R; 100nF + 22uF</text>
+<line class="wire" x1="200" y1="120" x2="240" y2="120"/>
+<text x="220.0" y="114.0" text-anchor="middle" font-size="11" fill="#444">3V3/GND/SDA/SCL</text>
+<line class="wire" x1="200" y1="140" x2="240" y2="240"/>
+<text x="220.0" y="184.0" text-anchor="middle" font-size="11" fill="#444">same bus</text>
+<line class="wire" x1="420" y1="120" x2="480" y2="120"/>
+<text x="450.0" y="114.0" text-anchor="middle" font-size="11" fill="#444">ch 0-7</text>
+<line class="wire" x1="420" y1="240" x2="480" y2="240"/>
+<text x="450.0" y="234.0" text-anchor="middle" font-size="11" fill="#444">ch 0-7</text>
+<text x="20" y="340" class="h">Channel map</text>
+<text x="20" y="360" class="small">U17 ch0..7 -> U1..U8     U18 ch0..7 -> U9..U16</text>
+<text x="20" y="378" class="small">Each VCNL4020: 1 IR anode, 2 SDA, 3 INT, 4 SCL, 5 VDD, 8/9 GND, 6/7/10 NC.</text>
+<text x="20" y="396" class="small">Pull-ups: 4.7k on upstream SDA/SCL; 10k on MUX_RST and INT_N. 22uF bulk + 100nF per sensor.</text>
+<text x="20" y="414" class="small">Board: 101.6 x 101.6 mm, 4x4 grid at 25.4 mm pitch, 0.2 mm polyimide flex, 2 layers.</text>
+
+</svg>
