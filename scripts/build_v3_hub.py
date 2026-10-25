@@ -22,7 +22,7 @@ def net(name):
     if name not in nets:
         n=pcbnew.NETINFO_ITEM(b,name); b.Add(n); nets[name]=n
     return nets[name]
-for n in ['GND','3V3','5V','SDA','SCL','INT_N','MUX_RST','LED_A']:
+for n in ['GND','3V3','SDA','SCL','INT_N','MUX_RST','LED_A']:
     net(n)
 for i in range(4):
     net(f'SDA_C{i}'); net(f'SCL_C{i}')
@@ -53,7 +53,7 @@ for i,(sd,sc) in enumerate(ch):
 
 # host header
 j1=place('PinHeader_2x05_P2.54mm_Vertical','J1','HOST_IF',10.0,31.0,90.0)
-conn(j1,{1:'3V3',2:'GND',3:'SDA',4:'SCL',5:'INT_N',6:'MUX_RST',7:'5V',8:'GND'})
+conn(j1,{1:'3V3',2:'GND',3:'SDA',4:'SCL',5:'INT_N',6:'MUX_RST',8:'GND'})
 
 # tile ports
 ports=[]

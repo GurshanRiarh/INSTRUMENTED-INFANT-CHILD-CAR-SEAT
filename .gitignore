@@ -18,3 +18,8 @@ fp-info-cache
 .vscode/
 .idea/
 .tmp-kitest/
+
+# Local netlist verification artifacts
+*.net
+.netlist-tmp.net
+.pcb-nets.json

@@ -69,8 +69,6 @@ Assumptions that should be checked against the physical V1/V2 hardware:
 
 ## Open issues / next steps
 
-- Draw full V3 tile and hub schematics (currently topology diagram + BOM +
-  PCB nets).
 - Add the VCNL4030X01 exposed pad back for a production thermal design, with a
   stencil and verified clearance.
 - Replace the 1.27 mm headers with keyed, sealed connectors for a vehicle
@@ -85,8 +83,8 @@ Assumptions that should be checked against the physical V1/V2 hardware:
 
 ## Schematic scope
 
-The V1 schematic is a connection-level drawing: it shows the 16 sensors, the
-two muxes, the host header, the 16 IR-anode series resistors, the upstream
-pull-ups, and the bulk capacitors. The 16 local 100 nF decoupling capacitors
-are omitted from the drawing to keep it readable; they are present in the
-PCB and BOM. The PCB is the authoritative netlist for fabrication.
+The V1 schematic shows all electrical components: 16 sensors, two muxes, the
+host header, R1-R20, and C1-C20. The V3 tile and hub schematics show all
+sensors, connectors, passives, the mux, ESD array, and LED. Test points and
+mounting holes are PCB-only features and are not drawn in the schematics.
+The PCB files remain the authoritative fabrication netlist.

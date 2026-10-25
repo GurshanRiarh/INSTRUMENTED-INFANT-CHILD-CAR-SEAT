@@ -29,7 +29,7 @@ def net(name):
     if name not in nets:
         n=pcbnew.NETINFO_ITEM(board,name); board.Add(n); nets[name]=n
     return nets[name]
-for n in ["GND","3V3","SDA","SCL","INT_N","NC"]:
+for n in ["GND","3V3","SDA","SCL","INT_N"]:
     net(n)
 for i in range(1,5):
     net(f"IR_K{i}")
@@ -81,7 +81,7 @@ r3=place("R_0603_1608Metric","R3","10k",15.0,13.5); conn(r3,{1:"3V3",2:"INT_N"})
 
 # tile connector: 3V3, GND, SDA, SCL, INT, NC
 j=place("PinHeader_1x06_P1.27mm_Vertical","J1","TILE_IF",15.0,26.0)
-conn(j,{1:"3V3",2:"GND",3:"SDA",4:"SCL",5:"INT_N",6:"NC"})
+conn(j,{1:"3V3",2:"GND",3:"SDA",4:"SCL",5:"INT_N"})
 
 # 2.2 mm mounting holes
 for ref,x,y in [("H1",3.0,3.0),("H2",27.0,3.0),("H3",3.0,27.0),("H4",27.0,27.0)]:

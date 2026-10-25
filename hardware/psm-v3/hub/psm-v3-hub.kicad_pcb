@@ -2339,7 +2339,6 @@
 			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net "5V")
 			(uuid "d0ce7c42-7546-4af9-858a-fb68219c153f")
 		)
 		(pad "8" thru_hole circle

@@ -1329,7 +1329,6 @@
 			(drill 0.65)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net "NC")
 			(uuid "3b38b7be-82b9-4d96-8fd4-5c2c5345540d")
 		)
 		(embedded_fonts no)

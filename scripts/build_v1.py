@@ -49,7 +49,7 @@ def net(name):
         nets[name] = n
     return nets[name]
 
-for name in ["GND", "3V3", "5V", "SDA", "SCL", "INT_N", "MUX_RST"]:
+for name in ["GND", "3V3", "SDA", "SCL", "INT_N", "MUX_RST"]:
     net(name)
 for i in range(1, 17):
     net(f"IR_A{i}")
@@ -142,7 +142,7 @@ for mux, start in [(u17, 1), (u18, 9)]:
 # ---------- header / pull-ups / bulk ----------
 j1 = place("PinHeader_2x05_P2.54mm_Vertical", "J1", "Tiva_IF", 50.8, 95.0, 0.0)
 connects(j1, {1: "3V3", 2: "GND", 3: "SDA", 4: "SCL", 5: "INT_N",
-              6: "MUX_RST", 7: "5V", 8: "GND"})
+              6: "MUX_RST", 8: "GND"})
 
 rp1 = place("R_0603_1608Metric", "R17", "4.7k", 28.0, 96.5, 0.0)
 connects(rp1, {1: "3V3", 2: "SDA"})

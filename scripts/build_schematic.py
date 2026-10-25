@@ -76,10 +76,53 @@ for u in mux_sym.units:
     for pin in u.pins:
         if pin.number in remap:
             pin.number, pin.name = remap[pin.number]
-            if pin.number in ('12','24','25'):
+            if pin.number in ('12','24'):
                 pin.electricalType='passive'
+    u.pins=[p for p in u.pins if str(p.number)!='25']
+
+# --- V3 sensor symbol (VCNL4030X01, 8 pins) ---
+sensor4030_sym=copy.deepcopy(sensor_sym)
+sensor4030_sym.entryName='VCNL4030X01'
+for u in sensor4030_sym.units:
+    u.entryName=u.entryName.replace('VCNL4020','VCNL4030X01')
+    u.pins=[p for p in u.pins if str(p.number) in [str(i) for i in range(1,9)]]
+names4030={1:'VDD',2:'SCL',3:'GND',4:'IR_ANODE',5:'IR_CATHODE',6:'LDR',7:'INT',8:'SDA'}
+for u in sensor4030_sym.units:
+    for pin in u.pins: pin.name=names4030.get(int(pin.number),pin.name)
+for p in sensor4030_sym.properties:
+    if p.key=='Reference': p.value='U'
+    if p.key=='Value': p.value='VCNL4030X01'
+    if p.key=='Description': p.value='Vishay VCNL4030X01 IR proximity sensor'
+
+# --- 6-pin connector / ESD symbols ---
+conn6_sym=copy.deepcopy(hdr_sym)
+conn6_sym.entryName='Conn_01x06'
+for u in conn6_sym.units:
+    u.entryName=u.entryName.replace('Conn_01x10','Conn_01x06')
+    u.pins=[p for p in u.pins if str(p.number) in [str(i) for i in range(1,7)]]
+for p in conn6_sym.properties:
+    if p.key=='Value': p.value='Conn_01x06'
+usb_sym=copy.deepcopy(conn6_sym)
+usb_sym.entryName='USBLC6-2SC6'
+for u in usb_sym.units:
+    u.entryName=u.entryName.replace('Conn_01x06','USBLC6-2SC6')
+names_usb={1:'IO1',2:'GND',3:'IO2',4:'IO2',5:'VDD',6:'IO1'}
+for u in usb_sym.units:
+    for pin in u.pins: pin.name=names_usb.get(int(pin.number),pin.name)
+for p in usb_sym.properties:
+    if p.key=='Value': p.value='USBLC6-2SC6'
+    if p.key=='Description': p.value='USB 2-line ESD protection array'
+
+# --- LED symbol ---
+led_sym=copy.deepcopy([x for x in io.libSymbols if x.entryName=='LED'][0])
+led_sym.libraryNickname='PSM'; led_sym.entryName='LED'
+for u in led_sym.units: u.entryName=u.entryName.replace('LED','LED')
+for p in led_sym.properties:
+    if p.key=='Reference': p.value='D'
+    if p.key=='Value': p.value='LED'
 
 s.libSymbols.append(sensor_sym); s.libSymbols.append(mux_sym)
+s.libSymbols.append(sensor4030_sym); s.libSymbols.append(conn6_sym); s.libSymbols.append(usb_sym); s.libSymbols.append(led_sym)
 s.libSymbols.append(hdr_sym); s.libSymbols.append(r_sym); s.libSymbols.append(c_sym)
 
 # templates
@@ -172,7 +215,6 @@ for ref,addr,a0,start in muxes:
     connect(inst,mux_sym,x,y,23,'SDA')
     connect(inst,mux_sym,x,y,24,'3V3')
     connect(inst,mux_sym,x,y,12,'GND')
-    connect(inst,mux_sym,x,y,25,'GND')
     # channels
     chpins=[(4,5),(6,7),(8,9),(10,11),(13,14),(15,16),(17,18),(19,20)]
     for ch,(sd,sc) in enumerate(chpins):
@@ -202,13 +244,18 @@ for i in range(1,17):
     col=(i-1)%4; row=(i-1)//4
     passive(tpl_r,r_sym,'PSM:R',f'R{i}','10R', 539.75+col*38.1, 63.5+row*38.1, '3V3', f'IR_A{i}')
 
+# local 100 nF decoupling caps C1-C16
+for i in range(1,17):
+    col=(i-1)%4; row=(i-1)//4
+    passive(tpl_c,c_sym,'PSM:C',f'C{i}','100n', 539.75+col*38.1, 339.09+row*38.1, '3V3', 'GND')
+
 # notes
 from kiutils.items.schitems import Text
 def note(txt,x,y,size=1.6):
     s.texts.append(Text(text=txt, position=Position(x,y,0), effects=Effects(font=Font(height=size,width=size), justify=Justify(horizontally='left')), uuid=str(uuid.uuid4())))
 note('PSM V1 - CONNECTION-LEVEL SCHEMATIC (thesis baseline)', 60, 40, 4.0)
 note('16x VCNL4020 on 4x4 array; 2x PCA9548A; Tiva/LaunchPad header. PCB is authoritative for passives and routing.', 60, 52, 2.0)
-note('Per sensor: 100nF local decoupling, 10R IR-anode series resistor. 22uF bulk per mux/header.', 60, 62, 1.7)
+note('Per sensor: 100nF local decoupling (C1-C16), 10R IR-anode series resistor (R1-R16). 22uF bulk C17/C18.', 60, 62, 1.7)
 note('U17 channels 0-7 -> U1..U8; U18 channels 0-7 -> U9..U16.', 60, 520, 2.0)
 note('VCNL4020: 1 IR anode, 2 SDA, 3 INT, 4 SCL, 5 VDD, 8/9 GND, 6/7/10 NC.', 60, 532, 1.7)
 
@@ -216,7 +263,7 @@ os.makedirs(os.path.dirname(OUT),exist_ok=True)
 # write standalone PSM symbol library
 libdir=os.path.join(BASE,'hardware','libraries'); os.makedirs(libdir,exist_ok=True)
 libsymbols=[]
-for sym in [hdr_sym,r_sym,c_sym,sensor_sym,mux_sym]:
+for sym in [hdr_sym,r_sym,c_sym,sensor_sym,mux_sym,sensor4030_sym,conn6_sym,usb_sym,led_sym]:
     z=copy.deepcopy(sym); z.libraryNickname=None; libsymbols.append(z)
 lib=SymbolLib(version='20231120', generator='kicad_symbol_editor', symbols=libsymbols)
 lib.to_file(os.path.join(libdir,'psm-symbols.kicad_sym'))

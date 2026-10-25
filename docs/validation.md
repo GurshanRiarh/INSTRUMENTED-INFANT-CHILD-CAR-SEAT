@@ -14,7 +14,10 @@
 | PSM V1 PCB | DRC (`--severity-all`) | **0 violations, 0 unconnected** | `hardware/psm-v1/drc.rpt` |
 | PSM V1 schematic | ERC | **0 violations** | `hardware/psm-v1/erc-v1.rpt` |
 | PSM V3 tile PCB | DRC (`--severity-all`) | **0 violations, 0 unconnected** | `hardware/psm-v3/tile/drc.rpt` |
+| PSM V3 tile schematic | ERC | **0 violations** | `hardware/psm-v3/tile/erc.rpt` |
 | PSM V3 hub PCB | DRC (`--severity-all`) | **0 violations, 0 unconnected** | `hardware/psm-v3/hub/drc.rpt` |
+| PSM V3 hub schematic | ERC | **0 violations** | `hardware/psm-v3/hub/erc.rpt` |
+| V1 / V3 schematic-to-PCB netlist | pad/net comparison | **0 mismatches** (ignoring intentionally unconnected pins) | see commands below |
 
 The DRC reports also list KiCad's "ignored checks" (for example, test points
 and mounting holes without courtyards). These are informational; no errors or
@@ -29,8 +32,23 @@ kicad-cli sch erc --output hardware/psm-v1/erc-v1.rpt hardware/psm-v1/psm-v1.kic
 
 # V3
 kicad-cli pcb drc --severity-all --output hardware/psm-v3/tile/drc.rpt hardware/psm-v3/tile/psm-v3-tile.kicad_pcb
+kicad-cli sch erc --output hardware/psm-v3/tile/erc.rpt hardware/psm-v3/tile/psm-v3-tile.kicad_sch
 kicad-cli pcb drc --severity-all --output hardware/psm-v3/hub/drc.rpt hardware/psm-v3/hub/psm-v3-hub.kicad_pcb
+kicad-cli sch erc --output hardware/psm-v3/hub/erc.rpt hardware/psm-v3/hub/psm-v3-hub.kicad_sch
 ```
+
+## Netlist consistency
+
+The schematics and PCBs were compared pad-by-pad:
+
+```bash
+flatpak run --command=python3 org.kicad.KiCad scripts/dump_pcb_nets.py
+python3 scripts/verify_netlist.py   # needs sexpdata
+```
+
+Result: 0 mismatches for V1, V3 tile, and V3 hub. Intentionally unconnected
+pins (sensor NC pins, test points, mounting holes, and the VQFN-only mux EP)
+are excluded.
 
 ## Routing workflow
 

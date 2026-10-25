@@ -3,20 +3,19 @@
 | Project | KiCad files | Fabrication |
 |---|---|---|
 | PSM V1 (thesis baseline) | `psm-v1/psm-v1.kicad_pro`, `.kicad_sch`, `.kicad_pcb` | `psm-v1/fab/` |
-| PSM V3 sensor tile | `psm-v3/tile/psm-v3-tile.kicad_pro`, `.kicad_pcb` | `psm-v3/tile/fab/` |
-| PSM V3 hub | `psm-v3/hub/psm-v3-hub.kicad_pro`, `.kicad_pcb` | `psm-v3/hub/fab/` |
+| PSM V3 sensor tile | `psm-v3/tile/psm-v3-tile.kicad_pro`, `.kicad_sch`, `.kicad_pcb` | `psm-v3/tile/fab/` |
+| PSM V3 hub | `psm-v3/hub/psm-v3-hub.kicad_pro`, `.kicad_sch`, `.kicad_pcb` | `psm-v3/hub/fab/` |
 
 The shared libraries are in `libraries/`:
 
 - `libraries/psm.pretty/` — custom footprints (`VCNL4020`, `VCNL4030X01`) plus
   the standard footprints copied into the project so the boards are
   self-contained.
-- `libraries/psm-symbols.kicad_sym` — project symbols used by the V1
-  schematic.
+- `libraries/psm-symbols.kicad_sym` — project symbols used by all three
+  schematics.
 
-Each project has its own `fp-lib-table` (and the V1 project has a
-`sym-lib-table`) with relative paths, so opening the `.kicad_pro` file is
-enough.
+Each project has its own `fp-lib-table` and `sym-lib-table` with relative
+paths, so opening the `.kicad_pro` file is enough.
 
 ## Reproducing the boards
 
@@ -28,6 +27,8 @@ flatpak run --command=python3 org.kicad.KiCad scripts/make_footprints.py
 flatpak run --command=python3 org.kicad.KiCad scripts/build_v1.py
 # route the exported .dsn with Freerouting, then:
 flatpak run --command=python3 org.kicad.KiCad scripts/finish_v1.py
+flatpak run --command=python3 org.kicad.KiCad scripts/build_schematic.py
+flatpak run --command=python3 org.kicad.KiCad scripts/build_schematic_v3.py
 flatpak run --command=python3 org.kicad.KiCad scripts/set_fab_options.py
 flatpak run --command=python3 org.kicad.KiCad scripts/export_bom.py
 ```
@@ -47,11 +48,14 @@ The `.dsn`/`.ses` files are intermediates and are not committed. The routed
 kicad-cli pcb drc --severity-all --output drc.rpt psm-v1/psm-v1.kicad_pcb
 kicad-cli sch erc --output erc.rpt psm-v1/psm-v1.kicad_sch
 kicad-cli pcb drc --severity-all --output drc.rpt psm-v3/tile/psm-v3-tile.kicad_pcb
+kicad-cli sch erc --output erc.rpt psm-v3/tile/psm-v3-tile.kicad_sch
 kicad-cli pcb drc --severity-all --output drc.rpt psm-v3/hub/psm-v3-hub.kicad_pcb
+kicad-cli sch erc --output erc.rpt psm-v3/hub/psm-v3-hub.kicad_sch
 ```
 
 Current result: 0 DRC violations and 0 unconnected items on all three PCBs;
-0 ERC violations on the V1 schematic.
+0 ERC violations on all three schematics; 0 schematic-to-PCB netlist
+mismatches (see `docs/validation.md`).
 
 ## Fabrication outputs
 

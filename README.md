@@ -12,7 +12,7 @@ Two hardware revisions are included:
 | **PSM V3** | Prannav's proposed improvements: VCNL4030X01 sensors, four factory I²C addresses per tile, one mux, modular 2×2 tiles, sealing/waterproofing features. | 4 × 30 × 30 mm flex tiles + 60 × 40 mm FR4 hub |
 
 Both PCB revisions pass KiCad DRC with **0 violations and 0 unconnected
-items**. The V1 schematic passes ERC with **0 violations**. The boards are
+items**. All three schematics pass ERC with **0 violations**. The boards are
 research prototypes, not certified medical or automotive devices.
 
 ![System architecture](docs/system-architecture.png)
@@ -38,8 +38,8 @@ firmware/                    optional I²C bring-up script for a Raspberry Pi
 1. Install KiCad 9 or newer (this design was validated with **KiCad 10.0.7**).
 2. Open one of:
    - `hardware/psm-v1/psm-v1.kicad_pro` — schematic + PCB
-   - `hardware/psm-v3/tile/psm-v3-tile.kicad_pro` — sensor tile PCB
-   - `hardware/psm-v3/hub/psm-v3-hub.kicad_pro` — hub PCB
+   - `hardware/psm-v3/tile/psm-v3-tile.kicad_pro` — sensor tile schematic + PCB
+   - `hardware/psm-v3/hub/psm-v3-hub.kicad_pro` — hub schematic + PCB
 3. The project-local `fp-lib-table` and `sym-lib-table` load the custom
    footprints/symbols from `hardware/libraries/`.
 4. Fabrication data is in each project's `fab/` folder. Review the fab notes
@@ -94,13 +94,18 @@ V3 implements the improvement points from Prannav's proposal sections:
 
 ![PSM V3 topology](docs/psm-v3-topology.png)
 
-| V3 tile | V3 hub |
+| V3 tile PCB | V3 hub PCB |
 |---|---|
 | ![V3 tile](docs/psm-v3-tile-board.png) | ![V3 hub](docs/psm-v3-hub-board.png) |
 
-The V3 boards are PCB-only KiCad projects. The connection-level topology is
-documented in [docs/psm-v3-topology.pdf](docs/psm-v3-topology.pdf) and the
-pinouts below. A full V3 schematic is a documented next step.
+| V3 tile schematic | V3 hub schematic |
+|---|---|
+| ![V3 tile schematic](docs/psm-v3-tile-schematic.png) | ![V3 hub schematic](docs/psm-v3-hub-schematic.png) |
+
+The V3 projects include full schematics (`psm-v3-tile.kicad_sch` and
+`psm-v3-hub.kicad_sch`), the connection topology diagram, and the routed PCBs.
+Schematics are in [docs/psm-v3-tile-schematic.pdf](docs/psm-v3-tile-schematic.pdf)
+and [docs/psm-v3-hub-schematic.pdf](docs/psm-v3-hub-schematic.pdf).
 
 ## Pinouts and address map
 
@@ -191,7 +196,10 @@ Key notes:
 | V1 PCB DRC | 0 violations, 0 unconnected |
 | V1 schematic ERC | 0 violations |
 | V3 tile PCB DRC | 0 violations, 0 unconnected |
+| V3 tile schematic ERC | 0 violations |
 | V3 hub PCB DRC | 0 violations, 0 unconnected |
+| V3 hub schematic ERC | 0 violations |
+| Schematic-to-PCB netlist | 0 mismatches (all 3 designs) |
 
 Details and reproduction commands are in
 [docs/validation.md](docs/validation.md).
@@ -211,8 +219,8 @@ Details and reproduction commands are in
 
 **Implemented**
 
-- Thesis-baseline V1 schematic and routed PCB.
-- Modular V3 tile and hub routed PCBs.
+- Full V1 schematic and routed PCB.
+- Full V3 tile and hub schematics and routed PCBs.
 - Custom VCNL4020/VCNL4030X01 footprints and PSM symbol library.
 - Fabrication outputs, BOMs, and validation reports.
 
@@ -220,8 +228,6 @@ Details and reproduction commands are in
 
 - No boards have been fabricated or electrically tested.
 - No firmware, sensor-fusion pipeline, or app code is included.
-- V3 tile/hub schematics are not drawn; the topology diagram and pin tables
-  are the current connection reference.
 - No silicone samples, flex-bend fatigue, thermal, EMC, or crash-safety
   testing.
 - No medical or automotive certification. The system is a research
